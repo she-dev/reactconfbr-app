@@ -9,6 +9,7 @@
     "moment": "^2.22.1",
     "react": "16.3.1",
     "react-native": "0.55.1",
+    "react-native-fbsdk": "^0.7.0",
     "react-native-keyboard-spacer": "^0.4.1",
     "react-native-linear-gradient": "^2.4.0",
     "react-native-modal": "^6.0.0",
