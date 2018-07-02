@@ -17,13 +17,17 @@ const ErrorView = styled.View`
   justify-content: space-between;
   background-color: white;
   border-radius: 7px;
-  ${Platform.select({ ios: css`
+  ${Platform.select({
+    ios: css`
       shadow-color: grey;
       shadow-offset: 0px 0px;
       shadow-radius: 2px;
-      shadow-opacity: 2px;`, android: css`
-        elevation: 5;
-    ` })};
+      shadow-opacity: 2px;
+    `,
+    android: css`
+      elevation: 5;
+    `,
+  })};
   width: ${width - 40};
   height: 68;
   left: 20;
@@ -41,7 +45,7 @@ const CloseButton = styled.TouchableOpacity`
 
 const ErrorText = styled.Text`
   flex: 6;
-  color: ${props => props.error ? props.theme.colors.errorViewColor : props.theme.colors.primaryColor};
+  color: ${props => (props.error ? props.theme.colors.errorViewColor : props.theme.colors.primaryColor)};
   font-weight: bold;
   margin-horizontal: 10;
   font-size: 16;
@@ -50,7 +54,7 @@ const ErrorText = styled.Text`
 const CloseIcon = styled.Image.attrs({
   source: IMAGES.CLOSE,
 })`
-  tint-color: ${props => props.error ? props.theme.colors.errorViewColor : props.theme.colors.primaryColor};
+  tint-color: ${props => (props.error ? props.theme.colors.errorViewColor : props.theme.colors.primaryColor)};
   width: 25;
   height: 25;
 `;
@@ -77,9 +81,7 @@ const ErrorModal = ({ successText, errorText, visible, timeout, onRequestClose }
       hardwareAccelerated
     >
       <ErrorView>
-        <ErrorText error={errorText}>
-          {errorText.length > 0 ? errorText : successText}
-        </ErrorText>
+        <ErrorText error={errorText}>{errorText.length > 0 ? errorText : successText}</ErrorText>
         <CloseButton onPress={onRequestClose}>
           <CloseIcon error={errorText} />
         </CloseButton>

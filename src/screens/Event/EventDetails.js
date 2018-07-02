@@ -25,7 +25,7 @@ const Wrapper = styled(LinearGradient).attrs({
 const HeaderContainer = styled.View`
   padding: 10px 20px;
   padding-bottom: 20;
-  z-index: 1000
+  z-index: 1000;
 `;
 
 const Header = styled.View`
@@ -143,13 +143,13 @@ const ProfileInitials = styled.View`
   border-radius: 20;
   align-items: center;
   justify-content: center;
-  background-color: #651FFF
+  background-color: #651fff;
 `;
 
 const InitialsText = styled.Text`
   color: white;
   font-size: 24;
-  font-weight: bold
+  font-weight: bold;
 `;
 
 const IconBall = styled.TouchableOpacity`
@@ -183,9 +183,16 @@ type State = {};
 
 type Props = {};
 
-@withContext class EventDetails extends Component<Props, State> {
+@withContext
+class EventDetails extends Component<Props, State> {
   getInitials = name => {
-    return name ? name.split(' ').slice(0, 2).map(namePart => namePart.charAt(0).toUpperCase()).join('') : '';
+    return name
+      ? name
+          .split(' ')
+          .slice(0, 2)
+          .map(namePart => namePart.charAt(0).toUpperCase())
+          .join('')
+      : '';
   };
 
   cantGoToEvent = () => {
@@ -297,19 +304,21 @@ type Props = {};
             </ValuesContainer>
           </DateAndLocationRow>
           <AttendRow>
-            {isEventAttended
-              ? <React.Fragment>
-                  <CommentText>Do you want to cancel your attend?</CommentText>
-                  <IconBall onPress={() => this.cantGoToEvent()}>
-                    <CancelIcon />
-                  </IconBall>
-                </React.Fragment>
-              : <React.Fragment>
-                  <CommentText>Can you go to the event?</CommentText>
-                  <IconBall onPress={() => this.attendToEvent()}>
-                    <Icon />
-                  </IconBall>
-                </React.Fragment>}
+            {isEventAttended ? (
+              <React.Fragment>
+                <CommentText>Do you want to cancel your attend?</CommentText>
+                <IconBall onPress={() => this.cantGoToEvent()}>
+                  <CancelIcon />
+                </IconBall>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <CommentText>Can you go to the event?</CommentText>
+                <IconBall onPress={() => this.attendToEvent()}>
+                  <Icon />
+                </IconBall>
+              </React.Fragment>
+            )}
           </AttendRow>
           <ScheduleList data={schedule} renderDetail={this.renderItem} />
         </ScrollView>

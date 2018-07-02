@@ -7,7 +7,7 @@ export type ContextType = {
   successText: string,
   closeModal: () => void,
   openModal: string => void,
-}
+};
 
 const ContextAPI = createContext({
   token: '',
@@ -18,23 +18,21 @@ const ContextAPI = createContext({
 }: ContextType);
 
 export const withContext = (Comp: () => void) => (props: Object) => (
-  <ContextAPI.Consumer>
-    {context => <Comp {...props} context={context} />}
-  </ContextAPI.Consumer>
+  <ContextAPI.Consumer>{context => <Comp {...props} context={context} />}</ContextAPI.Consumer>
 );
 
 class Provider extends React.Component {
   state = {
     errorText: '',
     closeModal: () => this.setState({ errorText: '', successText: '' }),
-    openModal: (errorText) => this.setState({ errorText }),
-    openSuccessModal: (successText) => this.setState({ successText }),
+    openModal: errorText => this.setState({ errorText }),
+    openSuccessModal: successText => this.setState({ successText }),
   };
 
-  render(){
+  render() {
     const { errorText, successText, closeModal } = this.state;
 
-    return(
+    return (
       <ContextAPI.Provider value={this.state}>
         {this.props.children}
         <ErrorModal
@@ -45,7 +43,7 @@ class Provider extends React.Component {
           timeout={6000}
         />
       </ContextAPI.Provider>
-    )
+    );
   }
 }
 

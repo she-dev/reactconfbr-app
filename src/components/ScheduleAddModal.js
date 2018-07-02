@@ -35,7 +35,6 @@ const CloseAction = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   margin-bottom: 10;
-
 `;
 
 const CloseIcon = styled.Image.attrs({
@@ -77,7 +76,7 @@ const CreateButton = styled.TouchableOpacity`
 const SmallText = styled.Text`
   color: ${props => props.theme.colors.primaryColor};
   font-size: 16;
-  font-weight: 800; 
+  font-weight: 800;
 `;
 
 const ButtonsRow = styled.View`
@@ -115,33 +114,35 @@ const ScheduleAddModal = ({
 }: Props) => (
   <Modal isVisible={isVisible}>
     <ModalContent>
-      {isLoading
-        ? <IsLoadingContainer>
-            <Loading />
-          </IsLoadingContainer>
-        : <View>
-            <Body>
-              <ScrollView>
-                <CloseAction onPress={onClose}>
-                  <CloseIcon />
-                </CloseAction>
-                <ModalText>{modalText}</ModalText>
-                <Input
-                  mask="[00]:[00]"
-                  value={time}
-                  placeholder="Time"
-                  onChangeText={(cep: string) => onChangeTime(cep)}
-                />
-                <Input value={title} placeholder="Title" onChangeText={(title: string) => onChangeTitle(title)} />
-                <Input value={talker} placeholder="Talker" onChangeText={(talker: string) => onChangeTalker(talker)} />
-              </ScrollView>
-            </Body>
-            <ButtonsRow>
-              <CreateButton onPress={onConfirm}>
-                <SmallText>Add Item</SmallText>
-              </CreateButton>
-            </ButtonsRow>
-          </View>}
+      {isLoading ? (
+        <IsLoadingContainer>
+          <Loading />
+        </IsLoadingContainer>
+      ) : (
+        <View>
+          <Body>
+            <ScrollView>
+              <CloseAction onPress={onClose}>
+                <CloseIcon />
+              </CloseAction>
+              <ModalText>{modalText}</ModalText>
+              <Input
+                mask="[00]:[00]"
+                value={time}
+                placeholder="Time"
+                onChangeText={(cep: string) => onChangeTime(cep)}
+              />
+              <Input value={title} placeholder="Title" onChangeText={(title: string) => onChangeTitle(title)} />
+              <Input value={talker} placeholder="Talker" onChangeText={(talker: string) => onChangeTalker(talker)} />
+            </ScrollView>
+          </Body>
+          <ButtonsRow>
+            <CreateButton onPress={onConfirm}>
+              <SmallText>Add Item</SmallText>
+            </CreateButton>
+          </ButtonsRow>
+        </View>
+      )}
     </ModalContent>
     {Platform.OS === 'ios' && <KeyboardSpacer />}
   </Modal>

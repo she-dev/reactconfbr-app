@@ -18,13 +18,17 @@ const Wrapper = styled(LinearGradient).attrs({
   margin-top: 20;
   overflow: hidden;
   border-radius: 20;
-  ${Platform.select({ ios: css`
+  ${Platform.select({
+    ios: css`
       shadow-color: grey;
       shadow-offset: 0px 0px;
       shadow-radius: 2px;
-      shadow-opacity: 2px;`, android: css`
-        elevation: 5;
-  ` })};
+      shadow-opacity: 2px;
+    `,
+    android: css`
+      elevation: 5;
+    `,
+  })};
   flex-direction: column;
   padding: 22px 15px;
   border-radius: 20;
@@ -48,7 +52,7 @@ const DateText = styled.Text`
 const Container = styled.View`
   flex-direction: column;
   flex: 4;
-  padding: 0px 10px; 
+  padding: 0px 10px;
 `;
 
 const Separator = styled.View`
@@ -102,7 +106,13 @@ type Props = {
 };
 
 export const getInitials = (name: string) => {
-  return name ? name.split(' ').slice(0, 2).map(namePart => namePart.charAt(0).toUpperCase()).join('') : '';
+  return name
+    ? name
+        .split(' ')
+        .slice(0, 2)
+        .map(namePart => namePart.charAt(0).toUpperCase())
+        .join('')
+    : '';
 };
 
 const EventCard = ({ atendees, title, address, date, seeButtonAction }: Props) => {
@@ -110,9 +120,7 @@ const EventCard = ({ atendees, title, address, date, seeButtonAction }: Props) =
     <MakeTouchable onPress={seeButtonAction}>
       <Wrapper>
         <Row>
-          <DateText>
-            {moment(date).format('DD \n MMM \n YYYY')}
-          </DateText>
+          <DateText>{moment(date).format('DD \n MMM \n YYYY')}</DateText>
           <Separator />
           <Container>
             <EventAddress>{address}</EventAddress>

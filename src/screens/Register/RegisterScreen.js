@@ -16,8 +16,7 @@ import { IMAGES } from '../../utils/design/images';
 import { ROUTENAMES } from '../../navigation/RouteNames';
 import GradientWrapper from '../../components/GradientWrapper';
 
-const ForgotButton = styled.TouchableOpacity`
-`;
+const ForgotButton = styled.TouchableOpacity``;
 
 const ForgotText = styled.Text`
   color: ${props => props.theme.colors.secondaryColor};
@@ -47,7 +46,7 @@ const ButtonsWrapper = styled.View`
 const ButtonText = styled.Text`
   color: ${props => (!props.error ? props.theme.colors.primaryColor : props.theme.colors.errorViewColor)};
   font-size: 24px;
-  font-weight: bold
+  font-weight: bold;
 `;
 
 const BottomFixedReactLogo = styled.Image.attrs({
@@ -58,7 +57,7 @@ const BottomFixedReactLogo = styled.Image.attrs({
   position: absolute;
   right: -100;
   bottom: -90;
-  tint-color: rgba(0,0,0,0.1);
+  tint-color: rgba(0, 0, 0, 0.1);
   z-index: 1;
 `;
 
@@ -97,7 +96,7 @@ class RegisterScreen extends Component<Props, State> {
     const { navigation, context } = this.props;
 
     if (!name || !email || !password) {
-      context.openModal('Preencha todos os campos!');
+      return context.openModal('Preencha todos os campos!');
     }
 
     const input = {
@@ -141,25 +140,13 @@ class RegisterScreen extends Component<Props, State> {
         </Header>
         <TextWrapper>
           <BigText>Create an Account</BigText>
-          <Input
-            placeholder="Name"
-            onChangeText={text => this.setState({ name: text })}
-          />
-          <Input
-            placeholder="Email"
-            onChangeText={text => this.setState({ email: text })}
-          />
-          <Input
-            placeholder="Password"
-            secureTextEntry
-            onChangeText={text => this.setState({ password: text })}
-          />
+          <Input placeholder="Name" onChangeText={text => this.setState({ name: text })} />
+          <Input placeholder="Email" onChangeText={text => this.setState({ email: text })} />
+          <Input placeholder="Password" secureTextEntry onChangeText={text => this.setState({ password: text })} />
         </TextWrapper>
         <ButtonsWrapper>
           <Button fill onPress={this.handleRegisterPress}>
-            <ButtonText error={errorText ? true : false}>
-              Create an Account
-            </ButtonText>
+            <ButtonText error={errorText ? true : false}>Create an Account</ButtonText>
           </Button>
         </ButtonsWrapper>
         <BottomFixedReactLogo />
@@ -168,4 +155,4 @@ class RegisterScreen extends Component<Props, State> {
   }
 }
 
-export default withContext(RegisterScreen)
+export default withContext(RegisterScreen);

@@ -21,7 +21,7 @@ const TOTAL_REFETCH_ITEMS = 10;
 
 const Wrapper = styled.View`
   flex: 1;
-  background-color: white
+  background-color: white;
 `;
 
 type Props = {
@@ -179,7 +179,8 @@ class EventsScreen extends Component<Props, State> {
         seeButtonAction={() =>
           this.props.navigation.navigate(ROUTENAMES.EVENT_DETTAILS, {
             id: node.id,
-          })}
+          })
+        }
       />
     );
   };
@@ -239,7 +240,8 @@ const EventsScreenRefetchContainer = createRefetchContainer(
   EventsScreen,
   {
     query: graphql`
-      fragment EventsScreen_query on Query @argumentDefinitions(
+      fragment EventsScreen_query on Query
+        @argumentDefinitions(
           search: { type: String }
           coordinates: { type: "[Float]" }
           distance: { type: Int }
@@ -248,10 +250,10 @@ const EventsScreenRefetchContainer = createRefetchContainer(
           cursor: { type: String }
         ) {
         events(
-          first: $count,
+          first: $count
           after: $cursor
-          search: $search,
-          coordinates: $coordinates,
+          search: $search
+          coordinates: $coordinates
           distance: $distance
           days: $days
         ) @connection(key: "EventsScreen_events", filters: []) {
@@ -285,16 +287,16 @@ const EventsScreenRefetchContainer = createRefetchContainer(
       $coordinates: [Float]
       $distance: Int
       $days: Int
-      ) {
+    ) {
       ...EventsScreen_query
-      @arguments(
-        count: $count,
-        cursor: $cursor,
-        search: $search,
-        coordinates: $coordinates,
-        distance: $distance
-        days: $days
-      )
+        @arguments(
+          count: $count
+          cursor: $cursor
+          search: $search
+          coordinates: $coordinates
+          distance: $distance
+          days: $days
+        )
     }
   `,
 );

@@ -17,7 +17,7 @@ const mutation = graphql`
 function commit(
   input: $PropertyType<RegisterEmailMutationVariables, 'input'>,
   onCompleted: (response: RegisterEmailMutationResponse) => void,
-  onError: (error: Object) => void
+  onError: (error: Object) => void,
 ): RegisterEmailMutationResponse {
   return commitMutation(Environment, {
     mutation,

@@ -15,10 +15,6 @@ type Props = {
   children?: any,
 };
 
-const Header = (props: Props) => (
-  <Wrapper>
-    {props.children}
-  </Wrapper>
-);
+const Header = (props: Props) => <Wrapper>{props.children}</Wrapper>;
 
 export default Header;

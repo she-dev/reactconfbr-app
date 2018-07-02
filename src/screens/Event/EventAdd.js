@@ -27,14 +27,14 @@ const Wrapper = styled(LinearGradient).attrs({
 const HeaderContainer = styled.View`
   padding: 10px 20px;
   padding-bottom: 20;
-  z-index: 1000
+  z-index: 1000;
 `;
 
 const Header = styled.View`
   margin-top: 10;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   z-index: 1000;
 `;
 
@@ -66,7 +66,7 @@ const CreateButton = styled.TouchableOpacity`
 const SmallText = styled.Text`
   color: ${props => props.theme.colors.primaryColor};
   font-size: 16;
-  font-weight: 800; 
+  font-weight: 800;
 `;
 
 const EventName = styled.TextInput.attrs({
@@ -172,7 +172,7 @@ const ScheduleList = styled(Timeline).attrs({
   showTime: false,
 })`
   padding: 10px 20px;
-  flex: 1; 
+  flex: 1;
 `;
 
 const ScheduleBaloon = styled.View`
@@ -189,7 +189,7 @@ const ScheduleBaloon = styled.View`
 const CommentText = styled.Text`
   font-size: 16;
   font-weight: bold;
-  color: rgb(51, 108, 248); 
+  color: rgb(51, 108, 248);
   width: ${width - 160};
 `;
 
@@ -199,13 +199,13 @@ const ProfileInitials = styled.View`
   border-radius: 20;
   align-items: center;
   justify-content: center;
-  background-color: #651FFF
+  background-color: #651fff;
 `;
 
 const InitialsText = styled.Text`
   color: white;
   font-size: 24;
-  font-weight: bold
+  font-weight: bold;
 `;
 
 const AddButton = styled.TouchableOpacity`
@@ -301,7 +301,13 @@ class EventAdd extends React.Component<Props, State> {
   };
 
   getInitials = name => {
-    return name ? name.split(' ').slice(0, 2).map(namePart => namePart.charAt(0).toUpperCase()).join('') : '';
+    return name
+      ? name
+          .split(' ')
+          .slice(0, 2)
+          .map(namePart => namePart.charAt(0).toUpperCase())
+          .join('')
+      : '';
   };
 
   setGeoLocation = () => {

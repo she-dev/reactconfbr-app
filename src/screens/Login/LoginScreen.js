@@ -16,9 +16,7 @@ import { ROUTENAMES } from '../../navigation/RouteNames';
 import GradientWrapper from '../../components/GradientWrapper';
 import { withContext } from '../../Context';
 
-
-const ForgotButton = styled.TouchableOpacity`
-`;
+const ForgotButton = styled.TouchableOpacity``;
 
 const ForgotText = styled.Text`
   color: ${props => props.theme.colors.secondaryColor};
@@ -53,14 +51,14 @@ const BottomFixedReactLogo = styled.Image.attrs({
   position: absolute;
   right: -100;
   bottom: -90;
-  tint-color: rgba(0,0,0,0.1);
+  tint-color: rgba(0, 0, 0, 0.1);
   z-index: 1;
 `;
 
 const ButtonText = styled.Text`
   color: ${props => (!props.error ? props.theme.colors.primaryColor : props.theme.colors.errorViewColor)};
   font-size: 24px;
-  font-weight: bold
+  font-weight: bold;
 `;
 
 const Arrow = styled.Image.attrs({
@@ -147,15 +145,8 @@ class LoginScreen extends Component<Props, State> {
         </Header>
         <TextWrapper>
           <BigText>Login</BigText>
-          <Input
-            placeholder="Email"
-            onChangeText={text => this.setState({ email: text })}
-          />
-          <Input
-            placeholder="Password"
-            secureTextEntry
-            onChangeText={text => this.setState({ password: text })}
-          />
+          <Input placeholder="Email" onChangeText={text => this.setState({ email: text })} />
+          <Input placeholder="Password" secureTextEntry onChangeText={text => this.setState({ password: text })} />
         </TextWrapper>
         <ButtonsWrapper>
           <Button fill onPress={this.handleLoginPress}>

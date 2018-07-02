@@ -4,13 +4,17 @@ import styled, { css } from 'styled-components/native';
 import { IMAGES } from '../utils/design/images';
 
 const Wrapper = styled.TouchableOpacity`
-  ${Platform.select({ ios: css`
+  ${Platform.select({
+    ios: css`
       shadow-color: grey;
       shadow-offset: 0px 0px;
       shadow-radius: 2px;
-      shadow-opacity: 2px;`, android: css`
-        elevation: 5;
-  ` })};
+      shadow-opacity: 2px;
+    `,
+    android: css`
+      elevation: 5;
+    `,
+  })};
   background-color: ${props => props.theme.colors.primaryColor};
   align-items: center;
   justify-content: center;

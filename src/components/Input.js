@@ -20,7 +20,7 @@ const RegisterTextInput = styled(TextInputMask).attrs({
   height: 40;
   width: 100%;
   font-size: 20;
-  padding-top:2;
+  padding-top: 2;
   color: white;
 `;
 

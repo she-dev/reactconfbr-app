@@ -22,8 +22,7 @@ const PillsContainer = styled.ScrollView.attrs({
 })`
   flex-direction: row;
   ${/* justify-content: space-around;
-  align-items: center; */ ''}
-  margin-horizontal: -6;
+  align-items: center; */ ''} margin-horizontal: -6;
   margin-top: 18;
 `;
 
@@ -64,7 +63,7 @@ const SearchInput = styled.TextInput.attrs({
 })`
   font-size: 30;
   font-weight: bold;
-  color: #FFF;
+  color: #fff;
   width: 280;
 `;
 
@@ -111,12 +110,7 @@ const LoggedHeader = ({
   <Wrapper>
     <SafeAreaView />
     <TitleAndIcon>
-      {!IsSearchVisible
-        ? <Title>{title}</Title>
-        : <SearchInput
-            value={searchValue}
-            onChangeText={onChangeSearch}
-          />}
+      {!IsSearchVisible ? <Title>{title}</Title> : <SearchInput value={searchValue} onChangeText={onChangeSearch} />}
       <Button onPress={showSearch}>
         <Icon visible={IsSearchVisible} />
       </Button>

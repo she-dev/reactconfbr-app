@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { AppRegistry, StyleSheet, Text, View } from 'react-native';
 
 import CameraRollPicker from 'react-native-camera-roll-picker';
 
@@ -50,7 +45,8 @@ export default class Example extends Component {
           assetType="Photos"
           imagesPerRow={3}
           imageMargin={5}
-          callback={this.getSelectedImages} />
+          callback={this.getSelectedImages}
+        />
       </View>
     );
   }

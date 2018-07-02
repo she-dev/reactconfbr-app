@@ -7,13 +7,17 @@ const Wrapper = styled.ImageBackground`
   margin-top: 20;
   overflow: hidden;
   border-radius: 20;
-  ${Platform.select({ ios: css`
+  ${Platform.select({
+    ios: css`
       shadow-color: grey;
       shadow-offset: 0px 0px;
       shadow-radius: 2px;
-      shadow-opacity: 2px;`, android: css`
-        elevation: 5;
-  ` })};
+      shadow-opacity: 2px;
+    `,
+    android: css`
+      elevation: 5;
+    `,
+  })};
 `;
 
 const CardOpacity = styled.View`
@@ -55,7 +59,7 @@ const ButtonContainer = styled.View`
 
 const TextContainer = styled.View`
   flex: 3;
-  flex-direction: column
+  flex-direction: column;
 `;
 
 const ReadButton = styled.TouchableOpacity`
@@ -91,7 +95,6 @@ const UserInitials = styled.View`
   background-color: ${props => props.theme.colors.primaryColor};
   align-items: center;
   justify-content: center;
-
 `;
 
 const Initials = styled.Text`
@@ -101,7 +104,7 @@ const Initials = styled.Text`
 `;
 
 const Atendees = styled.View`
-  margin-left: 10;  
+  margin-left: 10;
   flex-direction: row;
   align-items: center;
 `;
@@ -144,13 +147,7 @@ type Props = {
   seeButtonAction: () => void,
 };
 
-const EventCard = ({
-  atendees,
-  title,
-  description,
-  bgImage,
-  seeButtonAction,
-}: Props) => {
+const EventCard = ({ atendees, title, description, bgImage, seeButtonAction }: Props) => {
   const atendeesThumbs = atendees.slice(0, 3);
   return (
     <Wrapper
@@ -166,17 +163,19 @@ const EventCard = ({
             <Atendees>
               {atendeesThumbs.map(
                 (atendee, i) =>
-                  (atendee.image
-                    ? <UserImage
-                        invading={-7}
-                        source={{
-                          uri: atendee.image,
-                        }}
-                        key={i}
-                      />
-                    : <UserInitials invading={-7}>
-                        <Initials>{getInitials(atendee.name)}</Initials>
-                      </UserInitials>)
+                  atendee.image ? (
+                    <UserImage
+                      invading={-7}
+                      source={{
+                        uri: atendee.image,
+                      }}
+                      key={i}
+                    />
+                  ) : (
+                    <UserInitials invading={-7}>
+                      <Initials>{getInitials(atendee.name)}</Initials>
+                    </UserInitials>
+                  ),
               )}
               <AtendeesNumber>
                 <AtendeesNumberText>{atendees.length}</AtendeesNumberText>

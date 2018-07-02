@@ -35,7 +35,6 @@ const CloseAction = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   margin-bottom: 10;
-
 `;
 
 const CloseIcon = styled.Image.attrs({
@@ -77,7 +76,7 @@ const CreateButton = styled.TouchableOpacity`
 const SmallText = styled.Text`
   color: ${props => props.theme.colors.primaryColor};
   font-size: 16;
-  font-weight: 800; 
+  font-weight: 800;
 `;
 
 const ButtonsRow = styled.View`
@@ -115,37 +114,39 @@ const CEPPickerModal = ({
 }: Props) => (
   <Modal isVisible={isVisible}>
     <ModalContent>
-      {isLoading
-        ? <IsLoadingContainer>
-            <Loading />
-          </IsLoadingContainer>
-        : <View>
-            <Body>
-              <ScrollView>
-                <CloseAction onPress={onClose}>
-                  <CloseIcon />
-                </CloseAction>
-                <ModalText>{modalText}</ModalText>
-                <Input
-                  mask="[00000]-[000]"
-                  value={cepValue}
-                  placeholder="Zip Code"
-                  onChangeText={(cep: string) => onChangeCep(cep)}
-                />
-                <Input
-                  value={address}
-                  placeholder="Address"
-                  onChangeText={(address: string) => onChangeAddress(address)}
-                />
-                <Input value={number} placeholder="Number" onChangeText={(number: string) => onChangeNumber(number)} />
-              </ScrollView>
-            </Body>
-            <ButtonsRow>
-              <CreateButton onPress={onConfirm}>
-                <SmallText>Pick Location</SmallText>
-              </CreateButton>
-            </ButtonsRow>
-          </View>}
+      {isLoading ? (
+        <IsLoadingContainer>
+          <Loading />
+        </IsLoadingContainer>
+      ) : (
+        <View>
+          <Body>
+            <ScrollView>
+              <CloseAction onPress={onClose}>
+                <CloseIcon />
+              </CloseAction>
+              <ModalText>{modalText}</ModalText>
+              <Input
+                mask="[00000]-[000]"
+                value={cepValue}
+                placeholder="Zip Code"
+                onChangeText={(cep: string) => onChangeCep(cep)}
+              />
+              <Input
+                value={address}
+                placeholder="Address"
+                onChangeText={(address: string) => onChangeAddress(address)}
+              />
+              <Input value={number} placeholder="Number" onChangeText={(number: string) => onChangeNumber(number)} />
+            </ScrollView>
+          </Body>
+          <ButtonsRow>
+            <CreateButton onPress={onConfirm}>
+              <SmallText>Pick Location</SmallText>
+            </CreateButton>
+          </ButtonsRow>
+        </View>
+      )}
     </ModalContent>
     {Platform.OS === 'ios' && <KeyboardSpacer />}
   </Modal>

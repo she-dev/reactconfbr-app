@@ -4,8 +4,7 @@ import styled from 'styled-components/native';
 import Modal from 'react-native-modal';
 import LinearGradient from 'react-native-linear-gradient';
 
-const Wrapper = styled.View`
-`;
+const Wrapper = styled.View``;
 
 const ModalContent = styled(LinearGradient).attrs({
   colors: ['#53B1FF', '#651FFF'],
@@ -44,7 +43,7 @@ const Pill = styled.TouchableOpacity`
   border-radius: 20px;
   border: 2px solid ${props => props.theme.colors.secondaryColor};
   margin-right: 10;
-  background-color: ${props => props.fill ? props.theme.colors.secondaryColor : 'transparent'}
+  background-color: ${props => (props.fill ? props.theme.colors.secondaryColor : 'transparent')}
   width: 110px;
   height: 35px;
 `;
@@ -53,10 +52,10 @@ const PillText = styled.Text`
   color: ${props => props.theme.colors.primaryColor};
   font-size: 14px;
   font-weight: bold;
-`
+`;
 const Row = styled.View`
   flex-direction: row;
-`
+`;
 
 const ClosePill = styled.TouchableOpacity`
   padding: 8px 18px;
@@ -64,12 +63,12 @@ const ClosePill = styled.TouchableOpacity`
   border-radius: 20px;
   border: 2px solid ${props => props.theme.colors.secondaryColor};
   margin-right: 10;
-  background-color: ${props => props.fill ? props.theme.colors.secondaryColor : 'transparent'}
+  background-color: ${props => (props.fill ? props.theme.colors.secondaryColor : 'transparent')};
 `;
 
 type Props = {
   isVisible: boolean,
-  setDate: (number) => void,
+  setDate: number => void,
   closeDateModal: void => void,
 };
 
