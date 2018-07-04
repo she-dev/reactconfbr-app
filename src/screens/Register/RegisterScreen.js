@@ -1,5 +1,4 @@
 // @flow
-
 import React, { Component } from 'react';
 import { AsyncStorage } from 'react-native';
 import styled from 'styled-components/native';
