@@ -1,11 +1,10 @@
 // @flow
 import { AccessToken, GraphRequest, GraphRequestManager, LoginManager } from 'react-native-fbsdk';
-import type GraphRequestConfig from 'react-native-fbsdk/js/FBGraphRequest';
 
 const permissions: string[] = ['public_profile', 'email'];
 
-const graphRequest = (path: string = '/me', token: {}, callback: () => void) => {
-  const config: GraphRequestConfig = {
+const graphRequest = (path: string = '/me', token: string, callback: () => void) => {
+  const config = {
     accessToken: token,
     version: 'v3.0',
   };
@@ -13,7 +12,7 @@ const graphRequest = (path: string = '/me', token: {}, callback: () => void) => 
   new GraphRequestManager().addRequest(infoRequest).start();
 };
 
-const loginGraphRequest = (accessToken: {}, callback: () => void) => {
+const loginGraphRequest = (accessToken: string, callback: () => void) => {
   const path: string = '/me?fields=id,name,email';
   graphRequest(path, accessToken, callback);
 };
