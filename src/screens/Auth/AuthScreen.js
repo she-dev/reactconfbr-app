@@ -106,6 +106,35 @@ export default class AuthScreen extends Component<Props, State> {
     this.spin();
   }
 
+  handleFacebookPress = () => {
+    const { context } = this.props;
+    login()
+      .then(token => {
+        this.requestFacebookUserData(token);
+      })
+      .catch((error: Object | string) => {
+        if (typeof error === 'object') {
+          context.openModal(error.toString());
+        } else {
+          context.openModal(error);
+        }
+      });
+  };
+
+  requestFacebookUserData = (token: string) => {
+    const { context } = this.props;
+    const responseInfoCallback = (error: ?Object, result: ?Object) => {
+      if (error) {
+        console.log('[requestFacebookUserData]', error);
+        return context.openModal('Não foi possível obter os dados da conta do Facebook');
+      }
+
+      context.openModal(JSON.stringify(result));
+    };
+
+    loginGraphRequest(token, responseInfoCallback);
+  };
+
   spin() {
     this.animationValue.setValue(0);
     Animated.timing(this.animationValue, {
@@ -139,7 +168,7 @@ export default class AuthScreen extends Component<Props, State> {
           <BigText>nference</BigText>
         </TextWrapper>
         <ButtonsWrapper>
-          <Button fill>
+          <Button fill onPress={this.handleFacebookPress}>
             <FacebookLogo />
             <FacebookButtonText>Continue with Facebook</FacebookButtonText>
           </Button>
