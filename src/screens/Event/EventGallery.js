@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import CameraRollPicker from 'react-native-camera-roll-picker';
 
@@ -72,8 +72,5 @@ const styles = StyleSheet.create({
   },
   bold: {
     fontWeight: 'bold',
-  },
-  info: {
-    fontSize: 12,
   },
 });
