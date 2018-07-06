@@ -4,9 +4,9 @@ import type GraphRequestConfig from 'react-native-fbsdk/js/FBGraphRequest';
 
 const permissions: string[] = ['public_profile', 'email'];
 
-const graphRequest = (path: string = '/me', accessToken: {}, callback: () => void) => {
+const graphRequest = (path: string = '/me', token: {}, callback: () => void) => {
   const config: GraphRequestConfig = {
-    accessToken,
+    accessToken: token,
     version: 'v3.0',
   };
   const infoRequest = new GraphRequest(path, config, callback);
@@ -37,7 +37,11 @@ const login = () =>
               logout();
               reject(new Error('Cancelled by user'));
             } else {
-              AccessToken.getCurrentAccessToken().then(data => resolve(data.accessToken));
+              AccessToken.getCurrentAccessToken().then(data => {
+                if (data) {
+                  resolve(data.accessToken);
+                } else throw new Error('No AccessToken found.');
+              });
             }
           },
           () => {
