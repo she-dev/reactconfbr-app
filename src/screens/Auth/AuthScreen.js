@@ -6,11 +6,14 @@ import { Animated, Easing } from 'react-native';
 import styled from 'styled-components/native';
 import { withNavigation } from 'react-navigation';
 
-import Header from '../../components/common/Header';
+import type { ContextType } from '../../Context';
+
 import Button from '../../components/Button';
+import GradientWrapper from '../../components/GradientWrapper';
+import Header from '../../components/common/Header';
+import { login, loginGraphRequest } from '../../utils/facebook';
 import { IMAGES } from '../../utils/design/images';
 import { ROUTENAMES } from '../../navigation/RouteNames';
-import GradientWrapper from '../../components/GradientWrapper';
 
 const LoginButton = styled.TouchableOpacity`
   flex: 1;
@@ -50,7 +53,7 @@ const BottomFixedReactLogo = styled.Image.attrs({
   position: absolute;
   right: -100;
   bottom: -90;
-  tint-color: rgba(0,0,0,0.1);
+  tint-color: rgba(0, 0, 0, 0.1);
 `;
 
 const FacebookLogo = styled.Image.attrs({
@@ -83,12 +86,17 @@ const AnimatedImage = styled(Animated.Image).attrs({
   margin-top: 34px;
 `;
 
-type Props = {};
+type Props = {
+  context: ContextType,
+  navigation: Object,
+};
 
 type State = {};
 
 @withNavigation
 export default class AuthScreen extends Component<Props, State> {
+  animationValue: any;
+
   constructor() {
     super();
     this.animationValue = new Animated.Value(0);
