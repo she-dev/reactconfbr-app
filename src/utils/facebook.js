@@ -3,7 +3,7 @@ import { AccessToken, GraphRequest, GraphRequestManager, LoginManager } from 're
 
 const permissions: string[] = ['public_profile', 'email'];
 
-const graphRequest = (path: string = '/me', token: string, callback: () => void) => {
+export const graphRequest = (path: string = '/me', token: string, callback: () => void) => {
   const config = {
     accessToken: token,
     version: 'v3.0',
@@ -12,16 +12,16 @@ const graphRequest = (path: string = '/me', token: string, callback: () => void)
   new GraphRequestManager().addRequest(infoRequest).start();
 };
 
-const loginGraphRequest = (accessToken: string, callback: () => void) => {
+export const loginGraphRequest = (accessToken: string, callback: () => void) => {
   const path: string = '/me?fields=id,name,email';
   graphRequest(path, accessToken, callback);
 };
 
-const logout = () => {
+export const logout = () => {
   LoginManager.logOut();
 };
 
-const login = () =>
+export const login = () =>
   new Promise((resolve, reject) => {
     AccessToken.getCurrentAccessToken()
       .then(data => {
@@ -49,10 +49,3 @@ const login = () =>
         );
       });
   });
-
-export default {
-  login,
-  logout,
-  graphRequest,
-  loginGraphRequest,
-};
